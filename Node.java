@@ -1,6 +1,6 @@
 public class Node<T> {
     T value;
-    Node<T> next;
+    private Node<T> next;
 
     public Node(T value){
         this.value = value;
@@ -9,5 +9,9 @@ public class Node<T> {
 
     public void setNext(Node<T> next){
         this.next = next;
+    }
+
+    public Node<T> getNext(){
+        return this.next;
     }
 }

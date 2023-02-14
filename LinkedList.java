@@ -9,12 +9,33 @@ public class LinkedList<T>{
         return head == null ? true:false;
     }
 
-    public void insertEnd(T value){
-
+    public void insertBeginning(T value){
+        Node<T> n = new Node<T>(value);
+        // Case 1: The head is null
+        if(head == null){
+            head = n;
+            return;
+        }
+        
+        // Case 2: The head is not null
+        n.setNext(head);
+        head = n;
     }
 
-    public void insertBeginning(T value){
+    public void insertEnd(T value){
+        Node<T> n = new Node<T>(value);
+        // Case 1: The head is null
+        if(head == null){
+            head = n;
+        }
 
+        // Case 2: The head is not null
+        Node<T> end = head;
+        while(end != null || end.getNext() != null){
+            end = end.getNext();
+        }
+
+        end.setNext(n);
     }
 
     public void insertAt(int index, T value){
