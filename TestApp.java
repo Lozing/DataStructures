@@ -20,5 +20,12 @@ public class TestApp {
         l.insertAt(5, 10);
         l.deleteAll(10);
         System.out.println(l);
+
+        for(Integer i: l){
+            System.out.println(i);
+        }
+        l.reverse();
+        System.out.println(l);
+        System.out.println(l.getHead().value);
     }
 }
