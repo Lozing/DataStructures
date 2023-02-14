@@ -1,4 +1,6 @@
-public class LinkedList<T>{
+import java.util.Iterator;
+
+public class LinkedList<T> implements Iterable<T>{
     private Node<T> head;
     int count = 0;
 
@@ -8,6 +10,30 @@ public class LinkedList<T>{
 
     public boolean isEmpty(){
         return count == 0 ? true:false;
+    }
+
+    public T get(int index){
+        // Check that the index to return is in range
+        if(index >= count){
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
+        // Case 1: The index points to the head
+        if(index == 0){
+            return head.value;
+        }
+
+        // Case 2: The index does not point to the head
+        Node<T> pos = head;
+        for(int i = 0; i < index; i++){
+            pos = pos.getNext();
+        }
+
+        return pos.value;
+    }
+
+    public Node<T> getHead(){
+        return this.head;
     }
 
     public void insertBeginning(T value){
@@ -159,5 +185,29 @@ public class LinkedList<T>{
         }
         output += "]";
         return output;
+    }
+
+    public void reverse(){
+        Node<T> prev = null;
+        Node<T> current = head;
+        Node<T> next = null;
+
+        while(current != null){
+            // Store the next value
+            next = current.getNext();
+            // Set the next value of the current node to the previous one
+            current.setNext(prev);
+            // Move forward a node
+            prev = current;
+            current = next;
+        }
+
+        // Update the head
+        head = prev;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedIterator<>(this);
     }
 }
