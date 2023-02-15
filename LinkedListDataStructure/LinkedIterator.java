@@ -1,3 +1,4 @@
+package LinkedListDataStructure;
 import java.util.Iterator;
 
 public class LinkedIterator<T> implements Iterator<T>{
